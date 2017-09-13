@@ -34,4 +34,16 @@ public class StuImpl implements Repo {
 
         return list;
     }
+
+    @Override
+    public void saveData(Student st) {
+
+        String sql="insert into student values(?,?,?)";
+
+        jdbcTemplate.update(sql,new Object[]{
+                st.getId(),st.getName(),st.getImagePath()});
+
+    }
+
+
 }

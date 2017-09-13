@@ -10,4 +10,6 @@ import java.util.List;
 public interface Repo {
 
     List<Student> getData();
+
+    void saveData(Student st);
 }
