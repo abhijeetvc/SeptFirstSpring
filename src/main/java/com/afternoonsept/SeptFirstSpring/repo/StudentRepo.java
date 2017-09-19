@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by abhi on 10/09/17.
  */
-public interface Repo {
+public interface StudentRepo {
 
     List<Student> getData();
 

@@ -1,7 +1,7 @@
 package com.afternoonsept.SeptFirstSpring.impl;
 
 import com.afternoonsept.SeptFirstSpring.model.Student;
-import com.afternoonsept.SeptFirstSpring.repo.Repo;
+import com.afternoonsept.SeptFirstSpring.repo.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Service
-public class StuImpl implements Repo {
+public class StuImpl implements StudentRepo {
 
     @Value("${image.path}")
     String path;
@@ -38,10 +38,10 @@ public class StuImpl implements Repo {
     @Override
     public void saveData(Student st) {
 
-        String sql="insert into student values(?,?,?)";
+        String sql="insert into student values(?,?,?,?)";
 
         jdbcTemplate.update(sql,new Object[]{
-                st.getId(),st.getName(),st.getImagePath()});
+                st.getId(),st.getName(),st.getImagePath(),st.getDept().getId()});
 
     }
 

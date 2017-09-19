@@ -18,6 +18,16 @@ public class Student {
     Integer id;
     String name;
 
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
+    Dept dept;
+
 
     public Integer getId() {
         return id;

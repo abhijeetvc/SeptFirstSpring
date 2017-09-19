@@ -1,6 +1,8 @@
 package com.afternoonsept.SeptFirstSpring.controller;
 
+import com.afternoonsept.SeptFirstSpring.impl.DeptImpl;
 import com.afternoonsept.SeptFirstSpring.impl.StuImpl;
+import com.afternoonsept.SeptFirstSpring.model.Dept;
 import com.afternoonsept.SeptFirstSpring.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class StuControl {
 
     @Autowired
     StuImpl s;
+
+    @Autowired
+    DeptImpl deptImpl;
 
     @GetMapping(value="/getdata")
     Map<String,Object> data(){
@@ -72,6 +77,28 @@ public class StuControl {
 
 
             return "data saved";
+        }
+
+
+        @PostMapping(value="/savestuanddept")
+        public String getCombineData(@RequestBody Student student){
+
+        Dept d=new Dept();
+
+        d=student.getDept();
+
+        deptImpl.saveDept(d);
+
+        Student s1=new Student();
+        s1.setId(student.getId());
+        s1.setName(student.getName());
+        s1.setImagePath(student.getImagePath());
+        s1.setDept(student.getDept());
+
+        s.saveData(s1);
+
+        return "data saved";
+
         }
 
 
